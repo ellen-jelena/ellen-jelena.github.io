@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Start Page</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+:root {
+  --size: 10em;
+  --color: rgb(100%, 0%, 0%);
+}
+
+.borderCssClass {
+  border: 1px solid var(--color);
+}
+
+.heightCssClass {
+  height: 2em;
+  border-radius: 10px;
+  background-color: yellow;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+const DELAY = 20;
+
+let counter = 0;
+
+function changeColor() {
+  console.log('Evo me u changeColor', counter);
+//  document.getElementById('hrId').style.backgroundColor = 'rgb(100%, 100%, ' + counter + '%)';
+  document.getElementById('hrId').style.backgroundColor = `rgb(100%, 100%, ${ counter }%)`;
+  if(counter >= 100) {
+    clearTimeout(Interval);
+    counter = 0;
+    return;
+  }
+  counter++;
+}
+
+function clickJSFunction() {
+  console.log('Evo me u clickJSFunction');
+  Interval = setInterval(changeColor, DELAY);
+}
+      /*]]>*/
+    </script>
+  </head>
+  <body class="bodyCssClass">
+    <button id="buttonId" onclick="clickJSFunction()">Click me !</button>
+    <hr class="borderCssClass heightCssClass" id="hrId"/>
+    <hr style="border: 2px dashed blue;"/>
+  </body>
+</html>

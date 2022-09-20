@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Start Page</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+:root {
+  --size: 10em;
+  --color: rgb(100%, 0%, 0%);
+}
+
+hr {
+  border: 3px dotted green;
+}
+
+.bodyCssClass {
+  background-color: rgb(100%, 100%, 100%);
+  color: rgb(0%, 0%, 0%);
+}
+
+.borderCssClass {
+  border: 1px solid var(--color);
+}
+
+.heightCssClass {
+  height: 2em;
+  border-radius: 10px;
+  background-color: yellow;
+}
+
+#buttonId1 {
+  text-align: left;
+  margin: 1em;
+  padding: 1em;
+  width: var(--size);
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+function click1JSFunction() {
+  console.log('Evo me u click1JSFunction');
+  document.getElementById('mainId').innerHTML = 'zikica';
+  document.getElementById('mainId').style.borderWidth = '4px';
+}
+
+function click2JSFunction() {
+  console.log('Evo me u click2JSFunction');
+  let element = document.getElementById('mainId');
+  console.dir(element);
+  element.innerHTML = 'perica';
+  element.style.borderWidth = '4px';
+  element.style.borderColor = 'lime';
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body class="bodyCssClass">
+    <div class="borderCssClass" id="mainId">Hi!</div>
+    <hr/>
+    <input type="text" id="inputId" value="mikica"/>
+    <button id="buttonId1" onclick="click1JSFunction()">Click me 1!</button>
+    <button id="buttonId2" onclick="click2JSFunction()">Click me 2!</button>
+    <hr class="borderCssClass heightCssClass"/>
+    <hr style="border: 2px dashed blue;"/>
+  </body>
+</html>
