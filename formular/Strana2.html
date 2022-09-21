@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular 2</title>
+</head>
+<body bgcolor="#f5e8b3">
+    
+    <form align="center" action="./Strana3.html" method="get"action>
+        <fieldset>
+            <h2>Hajde da se prvo upoznamo!</h2>
+            <b>Ime i prezime:</b> <input type="text" name="pravoIme" placeholder="Stvarno, ko si ti?">
+            <br>
+            <br>
+            <b>Datum rodjenja:</b> <input type="date" name="datum">
+            <br>
+            <br>
+            <b>Pol:</b>
+            <b>Muski:</b> <input type="radio" name="pol" value="m">
+            <b>Zenski:</b> <input type="radio" name="pol" value="z">
+            <b>Ne zelim da se izjasnim:</b> <input type="radio" name="pol" value="ne" checked>
+            <br>
+            <br>
+        </fieldset>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Zivotinje koje volim:</legend>
+            <br>
+            <b>Zivotinje:</b>
+            <br>
+            <label for="pas"><font color=blue>Pas</font></label>
+            <input type="checkbox" name="zivotinje" value="pas"id="pas">&nbsp;&nbsp;&nbsp;
+
+            <label for="macka"><font color=green>Macka</font></label>
+            <input type="checkbox" name="zivotinje" value="macka"id="macka">&nbsp;&nbsp;&nbsp;
+
+            <label for="zec"><font color=grey>Zec</font></label>
+            <input type="checkbox" name="zivotinje" value="zec"id="zec">
+            <br>
+            <label for="nosorog"><font color=red>Nosorog</font></label>
+            <input type="checkbox" name="zivotinje" value="nosorog"id="nosorog">&nbsp;&nbsp;&nbsp;
+
+            <label for="puz"><font color=lime>Puz</font></label>
+            <input type="checkbox" name="zivotinje" value="puz"id="puz">&nbsp;&nbsp;&nbsp;
+
+            <label for="opetZec"><font color=magenta>Opet Zec</font></label>
+            <input type="checkbox" name="zivotinje" value="opetZec"id="opetZec">
+        </fieldset>
+        <br>
+        <br>
+        <hr color="#6da679" size="6" width="75%">
+
+        <input type="submit" value="AKO KLIKNES, VIDECES MACE">
+
+    </form>
+    
+</body>
+</html>
