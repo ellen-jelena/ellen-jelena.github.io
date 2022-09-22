@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Color</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.boxCssClass {
+  border: 1px solid black;
+  width: 20em;
+  height: 2em;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+      /*]]>*/
+    </script>
+  </head>
+  <body class="bodyCssClass" id="bodyId">
+    <div class="readableCssShow">
+      <table border="0">
+<script>
+  for(let r = 0; r <= 100; r += 50) {
+    for(let g = 0; g <= 100; g += 50) {
+      for(let b = 0; b <= 100; b += 50) {
+        let rgb = `rgb(${ r }%, ${ g }%, ${ b }%);`;
+        document.write(`<tr><td>${ rgb }</td><td><div class="boxCssClass" style="background-color: ${ rgb }">&nbsp;</div></td></tr>`);
+      }
+    }
+  }
+</script>
+      </table>
+    </div>
+  </body>
+</html>

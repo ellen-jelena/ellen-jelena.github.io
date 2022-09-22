@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Color</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.bodyCssClass {
+  background-color: rgb(0%, 0%, 0%);
+}
+
+.readableCssShow {
+  display: inline-block;
+  background-color: rgb(100%, 100%, 100%);
+  color: rgb(0%, 0%, 0%);
+  padding: 1em;
+}
+
+.sliderCssClass {
+  width: 400px;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+function work(r, g, b) {
+  let rgb = `rgb(${ r }%, ${ g }%, ${ b }%)`;
+  document.getElementById('bodyId').style.backgroundColor = rgb;
+  document.getElementById('showId').innerHTML = rgb;
+}
+
+function doChange() {
+  work(
+    document.getElementById('R').value,
+    document.getElementById('G').value,
+    document.getElementById('B').value
+  );
+}
+
+function random() {
+  return Math.floor(Math.random()*101);
+}
+
+function doRandom() {
+  let r = random();
+  let g = random();
+  let b = random();
+  work(r, g, b);
+  document.getElementById('R').value = r;
+  document.getElementById('G').value = g;
+  document.getElementById('B').value = b;
+}
+
+var Interval = undefined;
+const DEF_DELAY = 1000;
+const MIN_DELAY = 100;
+const MAX_DELAY = 10000;
+var Delay = DEF_DELAY;
+
+function startStop() {
+  if(Interval === undefined) {
+    doRandom();
+    Interval = setInterval(doRandom, Delay);
+    document.getElementById('startStopId').innerHTML = 'Stop';
+  } else {
+    clearInterval(Interval);
+    Interval = undefined;
+    document.getElementById('startStopId').innerHTML = 'Start';
+  }
+}
+
+function changeDelay(d) {
+  Delay = Math.min(Math.max(d, MIN_DELAY), MAX_DELAY);
+/*
+  Delay = d;
+  if(Delay < MIN_DELAY) {
+    Delay = MIN_DELAY
+  }
+  if(Delay > MAX_DELAY) {
+    Delay = MAX_DELAY
+  }
+*/
+  document.getElementById('delayId').innerHTML = Delay;
+  if(Interval !== undefined) {
+    clearInterval(Interval);
+    Interval = setInterval(doRandom, Delay);
+  }
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body class="bodyCssClass" id="bodyId">
+    <div class="readableCssShow">
+      <div id="showId">rgb(0%, 0%, 0%)</div>
+      <table border="0">
+        <tr>
+          <td>R</td>
+          <td><input type="range" class="sliderCssClass" min="0" max="100" value="0" id="R" oninput="doChange();"></td>
+        </tr>
+        <tr>
+          <td>G</td>
+          <td><input type="range" class="sliderCssClass" min="0" max="100" value="0" id="G" oninput="doChange();"></td>
+        </tr>
+        <tr>
+          <td>B</td>
+          <td><input type="range" class="sliderCssClass" min="0" max="100" value="0" id="B" oninput="doChange();"></td>
+        </tr>
+      </table>
+      <button onclick="doRandom();">Random</button>
+      <button onclick="startStop();"><span id="startStopId">Start</span></button>
+      <br/>
+      <button onclick="changeDelay(MIN_DELAY);">&lt;</button>
+      <button onclick="changeDelay(Delay-100);">---</button>
+      <button onclick="changeDelay(Delay-10);">--</button>
+      <button onclick="changeDelay(Delay-1);">-</button>
+      <span id="delayId">1000</span>
+      <button onclick="changeDelay(Delay+1);">+</button>
+      <button onclick="changeDelay(Delay+10);">++</button>
+      <button onclick="changeDelay(Delay+100);">+++</button>
+      <button onclick="changeDelay(MAX_DELAY);">&gt;</button>
+      <button onclick="changeDelay(DEF_DELAY);">=</button>
+    </div>
+  </body>
+</html>
