@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Art</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.body {
+  background-color: rgb(100%, 100%, 100%);
+}
+
+.box {
+  border-color: rgb(0%, 0%, 0%);
+  border-style: solid;
+  border-width: 2px;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+function random() {
+  return Math.floor(Math.random()*101);
+}
+
+function enter(id) {
+  document.getElementById(id).style.backgroundColor = `rgb(${ random() }%, ${ random() }%, ${ random() }%)`;
+}
+
+function leave(id) {
+  document.getElementById(id).style.backgroundColor = 'rgb(100%, 100%, 100%)';
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body class="body">
+    <div>
+      <div class="box" id="b11" onmouseenter="enter('b11');" onmouseleave="leave('b11')"></div>
+      <div class="box" id="b12" onmouseenter="enter('b12');" onmouseleave="leave('b12')"></div>
+      <div class="box" id="b13" onmouseenter="enter('b13');" onmouseleave="leave('b13')"></div>
+    </div>
+    <div>
+      <div class="box" id="b21" onmouseenter="enter('b21');" onmouseleave="leave('b21')"></div>
+      <div class="box" id="b22" onmouseenter="enter('b22');" onmouseleave="leave('b22')"></div>
+      <div class="box" id="b23" onmouseenter="enter('b23');" onmouseleave="leave('b23')"></div>
+    </div>
+    <div>
+      <div class="box" id="b31" onmouseenter="enter('b31');" onmouseleave="leave('b31')"></div>
+      <div class="box" id="b32" onmouseenter="enter('b32');" onmouseleave="leave('b32')"></div>
+      <div class="box" id="b33" onmouseenter="enter('b33');" onmouseleave="leave('b33')"></div>
+    </div>
+  </body>
+</html>
