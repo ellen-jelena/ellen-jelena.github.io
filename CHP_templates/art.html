@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Art</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.body {
+  background-color: rgb(100%, 100%, 100%);
+}
+
+.box {
+  border-color: rgb(0%, 0%, 0%);
+  border-style: solid;
+  border-width: 2px;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+let dateId = undefined;
+let containerId = undefined;
+let inputId = undefined;
+
+const X = 6;
+const Y = 5;
+
+function random() {
+  return Math.floor(Math.random()*101);
+}
+
+function enter() {
+  this.style.backgroundColor = `rgb(${ random() }%, ${ random() }%, ${ random() }%)`;
+}
+
+function leave() {
+  this.style.backgroundColor = 'rgb(100%, 100%, 100%)';
+}
+
+function onload() {
+  let content = document.getElementById('content');
+  for(let y = 0; y < Y; y++) {
+    let row = document.createElement('div');
+    for(let x = 0; x < X; x++) {
+      let box = document.createElement('div');
+      box.classList.add('box');
+      box.addEventListener('mouseenter', enter);
+      box.addEventListener('mouseleave', leave);
+      row.appendChild(box);
+    }
+    content.appendChild(row);
+  }
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body onload="onload();" class="body">
+    <div id="content"></div>
+  </body>
+</html>
