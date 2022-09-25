@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sareno</title>
+    <style type="text/css">
+        .box{
+            border-color: rgb(0%, 0%, 0%);
+            border-style: solid;
+            border-radius: 20px;
+            border-width: 2px;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            text-align: center;
+            padding: 12px;
+            display: inline-block;
+            font-family: Verdana;
+            font-style:italic;
+            font-weight: 700;
+            font-size: medium;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        function random() {
+            return Math.floor(Math.random()*101);
+        }
+        
+        function oboj(id) {
+            document.getElementById(id).style.backgroundColor = `rgb(${ random() }%, ${ random() }%, ${ random() }%)`;
+        }
+
+        function nemoj(id) {
+            document.getElementById(id).style.backgroundColor = 'rgb(100%, 100%, 100%)';
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <div class="box" id="prva" onmouseenter="oboj('prva');" onmouseleave="nemoj('prva')">Ja</div>
+        <div class="box" id="druga" id="druga" onmouseenter="oboj('druga');" onmouseleave="nemoj('druga')">menjam</div>
+        <div class="box" id="treca" id="treca" onmouseenter="oboj('treca');" onmouseleave="nemoj('treca')">boju</div>
+    </div>
+
+    <div>
+        <div class="box" id="cetvrta" id="cetvrta" onmouseenter="oboj('cetvrta');" onmouseleave="nemoj('cetvrta')">svaki</div>
+        <div class="box" id="peta" id="peta" onmouseenter="oboj('peta');" onmouseleave="nemoj('peta')">put</div>
+        <div class="box" id="sesta" id="sesta" onmouseenter="oboj('sesta');" onmouseleave="nemoj('sesta')">kada</div>
+    </div>
+
+    <div>
+        <div class="box" id="sedma" id="sedma" onmouseenter="oboj('sedma');" onmouseleave="nemoj('sedma')">misem</div>
+        <div class="box" id="osma" id="osma" onmouseenter="oboj('osma');" onmouseleave="nemoj('osma')">stanes</div>
+        <div class="box" id="deveta" id="deveta" onmouseenter="oboj('deveta');" onmouseleave="nemoj('deveta')">u mene!</div>
+    </div>
+</body>
+</html>
