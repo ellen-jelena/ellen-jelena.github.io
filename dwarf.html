@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dwarf</title>
+
+    <script type="text/javascript">
+        const rotated = document.getElementById("rotated");
+        let rotation = 0;
+        const angle = 30;
+        function rotatePatuljka(rotated) {
+            rotation = (rotation + angle) % 360;
+            rotated.style.transform = `rotate(${rotation}deg)`;
+        }
+        /* od 10. reda ja ovako citam i bez veze pisem:
+        uzmi po ID-ju sta ces da rotiras -- sliku patuljka
+        pocetno stanje je rotacija = 0
+        okreci patuljka svaki put kad kliknes 30 stepeni
+        funkcija kaze, rotacija neka bude pocetna rotacija plus 30 stepeni dok ne dodje do 360
+        red 15 nemam pojma sta radi, prepisala sam, pise da treba tako
+        F12 mi kaze da u 15. redu Uncaught TypeError: Cannot read properties of null (reading 'style')  */
+
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <button id="rotate" type="button" onclick="rotatePatuljka();">Click me</button>
+        <img id="rotated" src="dwarf.jpg">
+    </div>         
+</body>
+</html>
