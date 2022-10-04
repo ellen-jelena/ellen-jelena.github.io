@@ -1,0 +1,108 @@
+body{
+    background-color: #333;
+    font-family: "Calibri";
+}
+
+.readme{
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding-top: 1px;
+    padding-bottom: 15px;
+}
+
+.orangeBg{
+    height: 100px;
+    background-image: linear-gradient(#ff7a09, rgb(255, 196, 0));
+    margin: 25px;
+   }
+
+h1 {
+    color: white;
+    padding-left: 10px;
+}
+
+.heading{
+    color: #ff7a09;
+    margin: 0%;
+    padding: 0%;
+}
+
+table{
+    border-collapse: collapse;
+    border: dashed #ff7a09 1px;
+}
+
+th{
+    background-color: #ff7a09;
+    color: white;
+    text-align: left;
+}
+
+tr{
+    background-color: rgb(255, 196, 0);
+}
+
+td{
+    padding: 10px 60px 10px 10px;
+}
+
+a:link{
+    color: #ff7a09;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #333;
+    text-decoration: underline;
+}
+
+img {
+    float: right;
+    border: 1px solid #ccc;
+}
+
+.contents{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: auto auto;
+    margin: auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "first mainOne"
+    "first mainTwo";
+}
+
+.firstTable{
+    grid-area: first;
+    grid-column: 1;
+    padding-left: 40px;
+    object-fit: contain;  
+}
+
+
+.mainOne{
+    grid-area: mainOne;
+    grid-column: 2;
+    padding-left: 25px;
+    padding-right: 45px;
+}
+
+.mainTwo{
+    grid-area: mainTwo;
+    grid-column: 2;
+    padding-left: 25px;
+    padding-right: 45px;
+}
+
+hr{
+    border-color: #ccc;
+    width: 80%;
+}
+
+.footer{
+    padding: 15px;
+    text-align: center;
+    font-size: small;
+    color: #ccc;
+}
