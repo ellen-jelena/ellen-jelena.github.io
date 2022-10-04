@@ -1,0 +1,107 @@
+
+body{
+    max-width: 70%;
+    margin: auto;
+}
+
+.avio{
+    grid-area: header;
+    padding: 20px;
+    background-color: #b8b894;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 2px;
+    border-bottom: 2px solid whitesmoke;
+}
+
+.info{
+    grid-area: small_header;
+    padding: 10px;
+    background-color: #d6d6c2;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: navy;
+    border-bottom: 2px solid whitesmoke;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slikaLevo{
+    grid-area: pic_1;
+
+
+    
+}
+
+.slikaDesno{
+    grid-area: pic_2;
+}
+
+p{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: navy;  
+}
+
+
+.glavna{
+    grid-area: main;
+    background-color: #e0e0d1;
+    
+}
+.forma{
+    display: grid;
+    grid-template-columns: 5em 1fr;
+    max-width: 20em;
+    margin: auto;
+    
+}
+
+.forma .label{
+    grid-column: 1;
+    padding: 10px;
+    font-weight: bold;
+} 
+
+.forma .data{
+    grid-column: 2;
+    padding: 10px;
+}
+
+.sredina{
+    grid-column: 2;
+    padding-left: 10px;
+}
+
+.putuj{
+    grid-area: zdravo;
+    padding: 10px;
+    background-color: #b8b894;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: navy;
+    border-top: 1px solid whitesmoke;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "header header header"
+    "small_header small_header small_header"
+    "pic_1 main pic_2"
+    "zdravo zdravo zdravo";
+    
+    background-color: #d6d6c2;
+
+}
