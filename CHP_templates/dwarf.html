@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dwarf</title>
+
+    <script type="text/javascript">
+        
+        /* Rotation je ugao pod kojim cemo prikazivati patuljka */
+        let Rotation = 0;
+        
+        function changeRotationPatuljka(angleIncr) {
+            console.log("changeRotationPatuljka", angleIncr);
+            if(angleIncr === undefined) {
+                Rotation = 0;
+            } else {
+                Rotation = (Rotation + angleIncr + 360) % 360;
+            }
+            console.log("Rotation = ", Rotation, `rotate(${Rotation}deg)`);
+            document.getElementById("patuljak").style.transform = `rotate(${Rotation}deg)`;
+        }
+        
+
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <button id="rotate" type="button" onclick="changeRotationPatuljka(-10)">--</button>
+        <button id="rotate" type="button" onclick="changeRotationPatuljka(-1)">-</button>
+        <button id="rotate" type="button" onclick="changeRotationPatuljka()">0</button>
+        <button id="rotate" type="button" onclick="changeRotationPatuljka(1)">+</button>
+        <button id="rotate" type="button" onclick="changeRotationPatuljka(10)">++</button>
+        <img id="patuljak" src="dwarf.jpg">
+    </div>         
+</body>
+</html>
