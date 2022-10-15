@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dwarves</title>
+    <link rel="stylesheet" type="text/css" href="dwarves.css">
+    <script>
+
+        let rotation = 0;
+        let angle1 = 30;
+        let angle2 = -30;
+
+        function rotateRight() {
+            console.log("rotateRight");
+            rotation = (rotation + angle1) % 360;
+            console.log(`desno(${rotation}deg)`);
+            document.getElementById("crveni").style.transform = `rotate(${rotation}deg)`;
+            return console.log("ura")
+        }
+
+        function rotateLeft() {
+            rotation = (rotation + angle2) % 360;
+            document.getElementById("plavi").style.transform = `rotate(${rotation}deg)`;
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="myTitle">
+        <h1>Rotating Dwarves</h1>
+    </div>
+
+    <div class="content">
+
+        <div class="mainOne">
+            <div>
+                <img class="picture" id="crveni" src="crveni2.png">
+            </div>
+
+            <div>
+                <button type="button" class="gumb" onclick="rotateRight();">Turn me Right</button>
+            </div>
+        </div>
+
+        <div class="mainTwo">
+            <div>
+                <img class="picture" id = "plavi" src="plavi2.png">
+            </div>
+
+            <div>
+                <button class="gumb" onclick="rotateLeft();">Turn me Left</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
