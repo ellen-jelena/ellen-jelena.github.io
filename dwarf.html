@@ -7,12 +7,12 @@
     <title>Dwarf</title>
 
     <script type="text/javascript">
-        const rotated = document.getElementById("rotated");
+        
         let rotation = 0;
-        const angle = 30;
-        function rotatePatuljka(rotation) {
+        let angle = 30;
+        function rotatePatuljka() {
             rotation = (rotation + angle) % 360;
-            rotated.style.transform = `rotate(${rotation}deg)`;
+            document.getElementById("rotated").style.transform = `rotate(${rotation}deg)`;
         }
         /* od 10. reda ja ovako citam i bez veze pisem:
         uzmi po ID-ju sta ces da rotiras -- sliku patuljka
