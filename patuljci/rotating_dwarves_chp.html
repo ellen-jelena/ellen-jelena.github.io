@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dwarves</title>
+    <link rel="stylesheet" type="text/css" href="dwarves.css">
+    <script>
+
+        let Angles = { 'crveni': 0, 'plavi': 0 };
+
+        function doRotate(id, diff) {
+            Angles[id] += 360+diff;
+            Angles[id] %= 360;
+            document.getElementById(id).style.transform = `rotate(${ Angles[id] }deg)`;
+        }
+
+    </script>
+</head>
+<body>
+    <div class="myTitle">
+        <h1>Rotating Dwarves</h1>
+    </div>
+
+    <div class="content">
+
+        <div class="mainOne">
+            <div>
+                <img class="picture" id="crveni" src="crveni2.png">
+            </div>
+
+            <div>
+                <button type="button" class="gumb" onclick="doRotate('crveni', -10);">Turn me Left</button>
+                <button type="button" class="gumb" onclick="doRotate('crveni', 10);">Turn me Right</button>
+            </div>
+        </div>
+
+        <div class="mainTwo">
+            <div>
+                <img class="picture" id = "plavi" src="plavi2.png">
+            </div>
+
+            <div>
+                <button class="gumb" onclick="doRotate('plavi', -10);">Turn me Left</button>
+                <button class="gumb" onclick="doRotate('plavi', 10);">Turn me Right</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
