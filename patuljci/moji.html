@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dwarves</title>
+    <link rel="stylesheet" type="text/css" href="dwarves.css">
+    <script>
+
+        let Angles = { 'crveni': 0, 'plavi': 0 };
+
+        function doRotate(id, diff) {
+            Angles[id] += 360+diff;
+            Angles[id] %= 360;
+            document.getElementById(id).style.transform = `rotate(${ Angles[id] }deg)`;
+        }
+
+        //let rand = Math.floor(Math.random() * 360) + 1;
+        //console.log(rand);
+
+        function rotateCrazy(id, random) {
+            
+            Angles[id] += 360 + Math.floor(Math.random() * 360) + 1;
+            Angles[id] % 360;
+            document.getElementById(id).style.transform = `rotate(${Angles[id]}deg)`;
+
+        }
+
+        //napravi novu funkciju koja ce biti : setRotation(id, value) koja ce odma podesiti rotaciju na zadatu i 
+        
+        //QQ onda mozes i da napravis button :patuljak luduje koja ce da vrti patuljka u random ugao
+
+        // eto, sada mozes sama dodati funkciju : setAngle(id, value) koja ce podesiti angle za dati id na value i okrenuti patuljke patuljka zatim mozes dodati button koji resetovati unormaliti patuiljka a onda i button koji nas svaku sekundu okrene patuljka na random vrednost
+
+    </script>
+</head>
+<body>
+    <div class="myTitle">
+        <h1>Rotating Dwarves</h1>
+    </div>
+
+    <div class="content">
+
+        <div class="mainOne">
+            <div>
+                <img class="picture" id="crveni" src="crveni2.png">
+            </div>
+
+            <div>
+                <button type="button" class="gumb" onclick="doRotate('crveni', -10);">Turn me Left</button>
+                <button type="button" class="gumb" onclick="doRotate('crveni', 10);">Turn me Right</button>
+                <button type="button" class="gumb" onclick="rotateCrazy('crveni', 'Math.floor(Math.random() * 360) + 1;');">Crazy Dwarf</button>
+            </div>
+        </div>
+
+        <div class="mainTwo">
+            <div>
+                <img class="picture" id = "plavi" src="plavi2.png">
+            </div>
+
+            <div>
+                <button class="gumb" onclick="doRotate('plavi', -10);">Turn me Left</button>
+                <button class="gumb" onclick="doRotate('plavi', 10);">Turn me Right</button>
+                <button type="button" class="gumb" onclick="rotateCrazy('plavi', 'Math.floor(Math.random() * 360) + 1;');">Crazy Dwarf</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
