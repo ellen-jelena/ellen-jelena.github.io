@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Connect 4</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.blok {
+  width: 50px;
+  height: 50px;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+const COLUMNS = 7;
+const ROWS = 6;
+
+let Game = [];
+for(let c = 0; c < COLUMNS; c++) {
+  Game[c] = [];
+  for(let r = 0; r < ROWS; r++) {
+    Game[c][r] = 0;
+  }
+}
+
+let Next = 1;
+
+function change_next() {
+  if(Next === 1) {
+    Next = 2;
+  } else {
+    Next = 1;
+  }
+}
+
+function color() {
+  if(Next === 1) {
+    return 'red';
+  }
+  return 'yellow';
+}
+
+function check_rows() {
+  for(let r = 0; r < ROWS; r++) {
+    for(let c = 0; c < COLUMNS-3; c++) {
+      if(Game[c][r] === Next) {
+        let found = true;
+        for(let d = 0; d < 3; d++) {
+          if(Game[c+d+1][r] !== Next) {
+            found = false;
+            break;
+          }
+        }
+        if(found) {
+          return true;
+        }
+      }
+    }
+  }
+  return false
+}
+
+function check_columns() {
+  for(let c = 0; c < COLUMNS; c++) {
+    for(let r = 0; r < ROWS-3; r++) {
+      if(Game[c][r] === Next) {
+        let found = true;
+        for(let d = 0; d < 3; d++) {
+          if(Game[c][r+d+1] !== Next) {
+            found = false;
+            break;
+          }
+        }
+        if(found) {
+          return true;
+        }
+      }
+    }
+  }
+}
+
+function check() {
+  if(check_rows()) {
+    return true;
+  }
+  if(check_columns()) {
+    return true;
+  }
+/*
+  if(check_diagonal_up()) {
+    return true;
+  }
+  if(check_diagonal_down()) {
+    return true;
+  }
+*/
+  return false;
+}
+
+function play(c) {
+  if(Next === 0) {
+    alert('Igra je gotova, refresh');
+    return;
+  }
+  let r = 0;
+  while(r < ROWS && Game[c][r] !== 0) {
+    r++;
+  }
+  if(r === ROWS) {
+    alert('ne mozes tu igrati');
+    return;
+  }
+  Game[c][r] = Next;
+  /* oboji psica u rozo */
+  document.getElementById(`${ r }_${ c }`).style.backgroundColor = color();
+  if(check()) {
+    let winer = color();
+    setTimeout(
+      function() {
+        alert(`pobedio je ${ winer }`);
+      }, 50
+    );
+    Next = 0;
+    return;
+  }
+  change_next();
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th><button onclick="play(0);">play</button></th>
+        <th><button onclick="play(1);">play</button></th>
+        <th><button onclick="play(2);">play</button></th>
+        <th><button onclick="play(3);">play</button></th>
+        <th><button onclick="play(4);">play</button></th>
+        <th><button onclick="play(5);">play</button></th>
+        <th><button onclick="play(6);">play</button></th>
+      </tr>
+      <tr>
+        <td><div class="blok" id="5_0"></div></td>
+        <td><div class="blok" id="5_1"></div></td>
+        <td><div class="blok" id="5_2"></div></td>
+        <td><div class="blok" id="5_3"></div></td>
+        <td><div class="blok" id="5_4"></div></td>
+        <td><div class="blok" id="5_5"></div></td>
+        <td><div class="blok" id="5_6"></div></td>
+      </td>
+      <tr>
+        <td><div class="blok" id="4_0"></div></td>
+        <td><div class="blok" id="4_1"></div></td>
+        <td><div class="blok" id="4_2"></div></td>
+        <td><div class="blok" id="4_3"></div></td>
+        <td><div class="blok" id="4_4"></div></td>
+        <td><div class="blok" id="4_5"></div></td>
+        <td><div class="blok" id="4_6"></div></td>
+      </td>
+      <tr>
+        <td><div class="blok" id="3_0"></div></td>
+        <td><div class="blok" id="3_1"></div></td>
+        <td><div class="blok" id="3_2"></div></td>
+        <td><div class="blok" id="3_3"></div></td>
+        <td><div class="blok" id="3_4"></div></td>
+        <td><div class="blok" id="3_5"></div></td>
+        <td><div class="blok" id="3_6"></div></td>
+      </td>
+      <tr>
+        <td><div class="blok" id="2_0"></div></td>
+        <td><div class="blok" id="2_1"></div></td>
+        <td><div class="blok" id="2_2"></div></td>
+        <td><div class="blok" id="2_3"></div></td>
+        <td><div class="blok" id="2_4"></div></td>
+        <td><div class="blok" id="2_5"></div></td>
+        <td><div class="blok" id="2_6"></div></td>
+      </td>
+      <tr>
+        <td><div class="blok" id="1_0"></div></td>
+        <td><div class="blok" id="1_1"></div></td>
+        <td><div class="blok" id="1_2"></div></td>
+        <td><div class="blok" id="1_3"></div></td>
+        <td><div class="blok" id="1_4"></div></td>
+        <td><div class="blok" id="1_5"></div></td>
+        <td><div class="blok" id="1_6"></div></td>
+      </td>
+      <tr>
+        <td><div class="blok" id="0_0"></div></td>
+        <td><div class="blok" id="0_1"></div></td>
+        <td><div class="blok" id="0_2"></div></td>
+        <td><div class="blok" id="0_3"></div></td>
+        <td><div class="blok" id="0_4"></div></td>
+        <td><div class="blok" id="0_5"></div></td>
+        <td><div class="blok" id="0_6"></div></td>
+      </td>
+    </table>
+  </body>
+</html>
