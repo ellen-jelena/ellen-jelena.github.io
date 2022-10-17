@@ -16,6 +16,17 @@
     <script type="text/javascript">
       /*<![CDATA[*/
 
+/*
+
+05 15 25 35 45 55 65
+04 14 24 34 44 54 64
+03 13 23 33 43 53 63
+02 12 22 32 42 52 62
+01 11 21 31 41 51 61
+00 10 20 30 40 50 60
+
+*/
+
 const COLUMNS = 7;
 const ROWS = 6;
 
@@ -83,22 +94,49 @@ function check_columns() {
   }
 }
 
-function check() {
-  if(check_rows()) {
-    return true;
+function check_diagonal_up() {
+  for(let c = 0; c < COLUMNS-3; c++) {
+    for(let r = 0; r < ROWS-3; r++) {
+      if(Game[c][r] === Next) {
+        let found = true;
+        for(let d = 0; d < 3; d++) {
+          if(Game[c+d+1][r+d+1] !== Next) {
+            found = false;
+            break;
+          }
+        }
+        if(found) {
+          return true;
+        }
+      }
+    }
   }
-  if(check_columns()) {
-    return true;
-  }
-/*
-  if(check_diagonal_up()) {
-    return true;
-  }
-  if(check_diagonal_down()) {
-    return true;
-  }
-*/
   return false;
+}
+
+function check_diagonal_down() {
+  for(let c = 3; c < COLUMNS; c++) {
+    for(let r = 0; r < ROWS-3; r++) {
+      if(Game[c][r] === Next) {
+        let found = true;
+        for(let d = 0; d < 3; d++) {
+          if(Game[c-d-1][r+d+1] !== Next) {
+            found = false;
+            break;
+          }
+        }
+        if(found) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function check() {
+  return check_rows() || check_columns() || check_diagonal_up() || check_diagonal_down();
+  /* ovo sve moze da se optimizuje ali ne u ovom vremenu */
 }
 
 function play(c) {
