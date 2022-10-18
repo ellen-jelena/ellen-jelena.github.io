@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Oboji psica u roze</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+.center {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.psic {
+  color: black;
+  font-size: 100px;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+function oboji() {
+  let s = document.getElementById('psic').style;
+  if(s.color === 'pink') {
+    s.color = 'black';
+  } else {
+    s.color = 'pink';
+  }
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body>
+    <div class="center">
+      <div class="psic" onclick="oboji();" id="psic">PSIĆ</div>
+    </div>
+  </body>
+</html>
