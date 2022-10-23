@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Color</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+div {
+  border: 2px solid green;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+class Game {
+  
+  constructor(element) {
+    this.span = document.createElement('span');
+    element.appendChild(this.span);
+
+    let b = document.createElement('button');
+    b.innerHTML = 'Reset';
+    b.onclick = () => {
+      this.reset();
+    };
+    element.appendChild(b);
+
+    b = document.createElement('button');
+    b.innerHTML = 'Increment';
+    b.onclick = () => {
+      this.increment();
+    };
+    element.appendChild(b);
+
+    this.reset();
+  }
+  
+  reset() {
+    this.count = 0;
+    this.display();
+  }
+  
+  increment() {
+    this.count++;
+    this.display();
+  }
+  
+  display() {
+    this.span.innerHTML = this.count;
+  }
+  
+}
+
+function init() {
+  new Game(document.getElementById('game1'));
+  new Game(document.getElementById('game2'));
+  new Game(document.getElementById('game3'));
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body onload="init();">
+    <div id="game1"></div>
+    <div id="game2"></div>
+    <div id="game3"></div>
+  </body>
+</html>
