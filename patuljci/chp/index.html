@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dwarves</title>
+    <link rel="stylesheet" type="text/css" href="dwarves.css">
+    <script>
+
+class Dwarf {
+
+  constructor(element_name, img_src) {
+    this.angle = 0;
+
+    let element = document.getElementById(element_name);
+
+    this.img = document.createElement('img');
+    this.img.classList.add('picture');
+    this.img.src = img_src;
+
+    let div_1 = document.createElement('div');
+    div_1.appendChild(this.img);
+
+    element.appendChild(div_1);
+
+    let button_left = document.createElement('button');
+    button_left.innerHTML = 'Turn me Left';
+    button_left.classList.add('gumb');
+    button_left.onclick = () => {
+      this.add_angle(-10);
+    };
+    button_left.ondblclick = () => {
+      this.toggle_left_animation();
+    };
+
+
+    let button_right = document.createElement('button');
+    button_right.innerHTML = 'Turn me Right';
+    button_right.classList.add('gumb');
+    button_right.onclick = () => {
+      this.add_angle(10);
+    };
+    button_right.ondblclick = () => {
+      this.toggle_right_animation();
+    };
+
+    let button_random = document.createElement('button');
+    button_random.innerHTML = 'Crazy Dwarf';
+    button_random.classList.add('gumb');
+    button_random.onclick = () => {
+      this.random_angle();
+    };
+    button_random.ondblclick = () => {
+      this.toggle_random_animation();
+    };
+
+    let button_reset = document.createElement('button');
+    button_reset.innerHTML = 'Still';
+    button_reset.classList.add('gumb');
+    button_reset.onclick = () => {
+      this.set_angle(0);
+    };
+
+    let div_2 = document.createElement('div');
+    div_2.appendChild(button_left);
+    div_2.appendChild(button_right);
+    div_2.appendChild(button_random);
+    div_2.appendChild(button_reset);
+
+    element.appendChild(div_2);
+  }
+
+  display() {
+    this.img.style.transform = `rotate(${ this.angle }deg)`;
+  }
+
+  set_angle(value) {
+    this.angle = value;
+    this.display();
+  }
+
+  add_angle(value) {
+    this.angle += 360+value;
+    this.angle %= 360;
+    this.display();
+  }
+
+  random_angle() {
+    this.angle = Math.floor(Math.random()*359)+1;
+    this.display();
+  }
+
+  toggle_left_animation() {
+    /* Ovde dodaj kod kao u random_aniumation da se patulja okrece na levo svakih 10ms za po 1 stepen, koisti this.interval */
+  }
+
+  toggle_right_animation() {
+    /* Ovde dodaj kod kao u random_aniumation da se patulja okrece na desno svakih 10ms za po 1 stepen, koiristi this.interval */
+  }
+
+  toggle_random_animation() {
+    if(this.interval === undefined) {
+      this.interval = setInterval(
+        () => {
+          this.random_angle();
+        },
+        100
+      );
+    } else {
+      clearInterval(this.interval);
+      this.interval = undefined;
+    }
+  }
+
+}
+
+var Crveni_patuljak;
+var Plavi_patuljak;
+
+function init() {
+  Crveni_patuljak = new Dwarf('crveniPatuljak', 'crveni2.png');
+  Plavi_patuljak = new Dwarf('plaviPatuljak', 'plavi2.png');
+}
+
+    </script>
+</head>
+<body onload="init();">
+    <div class="myTitle">
+        <h1>Rotating Dwarves</h1>
+    </div>
+
+    <div class="content">
+        <div class="mainOne" id="crveniPatuljak"></div>
+        <div class="mainTwo" id="plaviPatuljak"></div>
+    </div>
+
+</body>
+</html>
