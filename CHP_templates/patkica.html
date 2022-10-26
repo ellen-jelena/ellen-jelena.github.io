@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Patkica</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+
+body {
+  height: 100vh;
+  margin: 0px;
+}
+
+      /*]]>*/
+    </style>
+    <script type="text/javascript">
+      /*<![CDATA[*/
+
+function dodaj_patkicu(x, y) {
+  let patkica = document.createElement('img');
+  patkica.src = 'patkica.png';
+  patkica.classList.add('kva');
+  pomeri_patkicu(patkica, x, y);
+  document.getElementsByTagName('body')[0].appendChild(patkica);
+  return patkica;
+}
+
+function pomeri_patkicu(patkica, x, y) {
+  patkica.style.position = 'absolute';
+  patkica.style.left = `${ x }px`;
+  patkica.style.top = `${ y }px`;
+}
+
+function slucajni_broj_do(m) {
+  return Math.floor(Math.random()*m);
+}
+
+function slucajna_patkica() {
+  let body = document.getElementsByTagName('body')[0];
+  dodaj_patkicu(
+    slucajni_broj_do(body.clientWidth),
+    slucajni_broj_do(body.clientHeight)
+  );
+}
+
+function klik(event) {
+  if(event.altKey) {
+    if(event.ctrlKey) {
+      for(;;) {
+        let patkice = document.getElementsByClassName('kva');
+        if(patkice.length === 0) {
+          break;
+        }
+        console.log(patkice, patkice[0]);
+        patkice[0].remove();
+      }
+      return;
+    }
+    for(let i = 0; i < 100; i++) {
+      slucajna_patkica();
+    }
+    return;
+  }
+  let pace = dodaj_patkicu(event.x, event.y);
+  if(event.shiftKey) {
+    pace.style.transform += 'rotate(45deg)';
+  }
+  if(event.ctrlKey) {
+    pace.style.transform += 'scaleX(-1)';
+  }
+}
+
+      /*]]>*/
+    </script>
+  </head>
+  <body onclick="klik(event);"></body>
+</html>
