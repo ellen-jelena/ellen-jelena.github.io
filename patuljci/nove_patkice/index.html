@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckKey</title>
+    <style type="text/css">
+
+body {
+  height: 100vh;
+  margin: 0px;
+  background-color: powderblue;
+}
+
+    </style>
+    <script type="text/javascript">
+
+  // Palimo i gasimo ispis event za svaki priotisnut ili pusten taster
+
+  const DEBUG = false;
+
+  // Ovim omogucavamo da se lako dodaju funkcije za pritisnuti i pusteni taste
+
+  let keyUpHandlers = {};
+  document.addEventListener(
+    'keyup',
+    (event) => {
+      if(DEBUG) {
+        console.log('keyup', event);
+      }
+      if(keyUpHandlers[event.code] !== undefined && typeof(keyUpHandlers[event.code]) === 'function') {
+        keyUpHandlers[event.code](event);
+      }
+    }
+  );
+
+  let keyDownHandlers = {};
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if(DEBUG) {
+        console.log('keydown', event);
+      }
+      if(keyDownHandlers[event.code] !== undefined && typeof(keyDownHandlers[event.code]) === 'function') {
+        keyDownHandlers[event.code](event);
+      }
+    }
+  );
+
+  // Ovde pravimo klasu za patkicu
+
+  class Duck_class {
+
+    constructor() {
+      this.element = document.createElement('img');
+      this.element.src = 'pacce.png';
+      document.getElementsByTagName('body')[0].appendChild(this.element);
+      this.angle = 0;
+      this.scale = 1;
+    }
+
+    delete() {
+      document.getElementsByTagName('body')[0].removeChild(this.element);
+    }
+
+    focus() {
+      this.element.style.border = '1px dotted black';
+    }
+
+    unfocus() {
+      this.element.style.border = '0px dotted black';
+    }
+
+    move(x, y) {
+      this.element.style.position = 'absolute';
+      this.element.style.left = `${ x }px`;
+      this.element.style.top = `${ y }px`;
+    }
+
+    transform() {
+      this.element.style.transform = `rotate(${ this.angle }deg) scale(${ this.scale })`;
+    }
+
+    set_rotate(value) {
+      this.angle += value;
+      this.transform();
+    }
+
+    set_scale(value) {
+      this.scale += value;
+      this.transform();
+    }
+
+    change_rotate(diff) {
+      this.angle += diff;
+      this.transform();
+    }
+
+    change_scale(diff) {
+      this.scale += diff;
+      this.transform();
+    }
+
+  }
+
+  // Pravimo novu klasu koja reprezentuje niz patkica
+
+  class Lake_class {
+
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      this.lake = [];
+      this.focus_index = undefined;
+    }
+
+    do_on_all_ducks(callback) {
+      for(let duck of this.lake) {
+        callback(duck);
+      }
+    }
+
+    clean() {
+      this.do_on_all_ducks(
+        (duck) => {
+          duck.delete();
+        }
+      );
+      this.init();
+    }
+
+    lake_is_empty() {
+      return this.lake.length === 0;
+    }
+
+    lake_is_not_empty() {
+      return this.lake.length !== 0;
+    }
+
+    add_duck() {
+      let duck = new Duck_class();
+      this.lake.push(duck);
+      this.set_focus_on_last_duck();
+    }
+
+    delete_duck() {
+      let last_have_focus = this.have_focus() && this.focus_index === this.lake.length-1;
+      let last = this.lake.pop();
+      if(last !== undefined) {
+        last.delete();
+        if(last_have_focus) {
+          this.focus_index = undefined;
+        }
+      }
+    }
+
+    have_focus() {
+      return this.focus_index !== undefined;
+    }
+
+    have_no_focus() {
+      return this.focus_index === undefined;
+    }
+
+    get_focused_duck() {
+      if(this.have_no_focus()) {
+        return undefined;
+      }
+      return this.lake[this.focus_index];
+    }
+
+    do_on_focused_duck(callback) {
+      let focused_duck = this.get_focused_duck();
+      if(focused_duck !== undefined) {
+        callback(focused_duck);
+      }
+    }
+
+    remove_focus_from_focused_duck() {
+      this.do_on_focused_duck(
+        (focused_duck) => {
+          focused_duck.unfocus();
+          this.focus_index = undefined;
+        }
+      )
+    }
+
+    set_focus_index(index) {
+      this.remove_focus_from_focused_duck();
+      this.focus_index = index;
+      this.lake[this.focus_index].focus();
+    }
+
+    set_focus_on_first_duck() {
+      if(this.lake_is_empty()) {
+        return;
+      }
+      this.set_focus_index(0);
+    }
+
+    set_focus_on_last_duck() {
+      if(this.lake_is_empty()) {
+        return;
+      }
+      this.set_focus_index(this.lake.length-1);
+    }
+
+    set_focus_on_previous_duck() {
+      if(this.lake_is_empty()) {
+        return;
+      }
+      if(this.have_no_focus()) {
+        this.set_focus_on_last_duck();
+        return;
+      }
+      let new_focus_index = this.focus_index-1;
+      if(new_focus_index < 0) {
+        new_focus_index = this.lake.length-1;
+      }
+      this.set_focus_index(new_focus_index);
+    }
+
+    set_focus_on_next_duck() {
+      if(this.lake_is_empty()) {
+        return;
+      }
+      if(this.have_no_focus()) {
+        this.set_focus_on_first_duck();
+        return;
+      }
+      let new_focus_index = this.focus_index+1;
+      if(new_focus_index >= this.lake.length) {
+        new_focus_index = 0;
+      }
+      this.set_focus_index(new_focus_index);
+    }
+
+  }
+
+  // Odavde definisemo sta ce se desiti kada se pritisne ili pusti taster
+
+  let Lake = new Lake_class();
+
+  keyUpHandlers['KeyA'] = keyUpHandlers['Insert'] = (event) => {
+    if(event.shiftKey) {
+      for(let i = 0; i < 10; i++) {
+        Lake.add_duck();
+      }
+    } else {
+      Lake.add_duck();
+    }
+  };
+
+  keyUpHandlers['KeyD'] = keyUpHandlers['Delete'] = (event) => {
+    if(event.shiftKey) {
+      Lake.clean();
+    } else {
+      Lake.delete_duck();
+    }
+  };
+
+  keyUpHandlers['KeyP'] = keyUpHandlers['ArrowLeft'] = (event) => {
+    Lake.set_focus_on_previous_duck();
+  };
+
+  keyUpHandlers['KeyN'] = keyUpHandlers['ArrowRight'] = (event) => {
+    Lake.set_focus_on_next_duck();
+  };
+
+  keyUpHandlers['Space'] = (event) => {
+    let diff = event.shiftKey ? -10 : 10;
+    if(event.ctrlKey) {
+      Lake.do_on_all_ducks(
+        (duck) => {
+          duck.change_rotate(diff);
+        }
+      );
+    } else {
+      Lake.do_on_focused_duck(
+        (focused_duck) => {
+          focused_duck.change_rotate(diff);
+        }
+      );
+    }
+  };
+
+    </script>
+  </head>
+  <body/>
+</html>
