@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+        height: 100vh;
+        margin: 0px;
+        background-color: powderblue;
+    }
+    </style>
+    <script type="text/javascript">
+
+        //hocu da se kad se ucita stranica, osluskuje kad je je pritisnuta strelica i u tom slucaju nesto da se desi
+        function ucitaj() {}
+            document.addEventListener("keydown", keyDownEvent);
+        {}
+       
+        //ovo se desi: ako je pritisnuto F2, dovuci slicicu patkice iz fajla i stavi je u body
+        function keyDownEvent(event) {
+            console.log(event);
+            
+            if(event.code === "F2") {
+                let patkica = document.createElement("img");
+                patkica.src = "pacce.png";
+                console.log(document.getElementsByTagName("bodyZ"))
+                document.getElementsByTagName("body")[0].appendChild(patkica);
+            }
+    
+        }
+        
+    </script>
+</head>
+<body onload="ucitaj()">
+    
+</body>
+</html>
